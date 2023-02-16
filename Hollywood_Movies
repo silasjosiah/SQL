@@ -1,0 +1,105 @@
+In this SQL, I'm querying a database with multiple tables in it to quantify statistics about Hollywood Movies and order data. 
+
+CREATE TABLE Hollywood_Movies
+    (id INTEGER PRIMARY KEY AUTOINCREMENT,
+    type TEXT,
+    minutes INTEGER,
+    actor INTEGER,
+    rating INTEGER
+    
+INSERT INTO Hollywood_Movies (type, minutes, actor rating)
+VALUES ("action", 60, Denzel, 10);
+INSERT INTO Hollywood_Movies (type, minutes, actor, rating)
+VALUES ("action", 75, Will, 7);
+INSERT INTO Hollywood_Movies (tye, minutes, actor, rating)
+VALUES ("suspense", 90, Halle, 6);
+INSERT INTO Hollywood_Movies (type, minutes, actor, rating)
+VALUES ("horror", 30, Denzel, 9);
+INSERT INTO Hollywood_Movies (type, minutes, actor, rating)
+VALUES ("comedy", 60, Chris, 6); 
+INSERT INTO Hollywood_Movies (type, minutes, actor, rating)
+VALUES ("romance", 55, Halle, 6);
+INSERT INTO Hollywood_Movies (type, minutes, actor rating)
+VALUES ("action", 40, Denzel, 10);
+INSERT INTO Hollywood_Movies (type, minutes, actor, rating)
+VALUES ("action", 25, Will, 7);
+INSERT INTO Hollywood_Movies (tye, minutes, actor, rating)
+VALUES ("suspense", 120, Halle, 8);
+INSERT INTO Hollywood_Movies (type, minutes, actor, rating)
+VALUES ("horror", 30, Denzel, 9);
+INSERT INTO Hollywood_Movies (type, minutes, actor, rating)
+VALUES ("comedy", 60, Chris, 6); 
+INSERT INTO Hollywood_Movies (type, minutes, actor, rating)
+VALUES ("romance", 55, Halle, 4);
+INSERT INTO Hollywood_Movies (type, minutes, actor rating)
+VALUES ("action", 30, Denzel, 8;
+INSERT INTO Hollywood_Movies (type, minutes, actor, rating)
+VALUES ("action", 60, Will, 5);
+INSERT INTO Hollywood_Movies (tye, minutes, actor, rating)
+VALUES ("suspense", 49, Halle, 6);
+INSERT INTO Hollywood_Movies (type, minutes, actor, rating)
+VALUES ("horror", 110, Denzel, 8);
+INSERT INTO Hollywood_Movies (type, minutes, actor, rating)
+VALUES ("comedy", 45, Chris, 3  ); 
+INSERT INTO Hollywood_Movies (type, minutes, actor, rating)
+VALUES ("romance", 35, Halle, 6);
+
+
+How many total minutes produced for each type of movie?
+
+SELECT type, SUM(minutes) AS total_minutes FROM Hollywood_Movies Group BY type;
+
+Which movie genres had the most minutes across all of the logs?
+
+SELECT type, SUM(minutes) AS total_minutes FROM Hollywood_Movies
+    Group BY type;
+    HAVING total_minutes > 65
+    ;
+    
+SELECT type, AVG(minutes) AS avg_minutes FROM Hollywood_Movies
+    Group BY type;
+    HAVING total_minutes > 75
+    ;
+    
+
+What actor had the best ratings?
+
+SELECT * FROM Hollywood_Movies WHERE rating > 8 ORDER BY actor;
+
+
+Using /*OR */
+
+SELECT * FROM Hollywood_Movies WHERE 
+minutes > 90 OR rating > 5;
+
+/* AND */
+
+How many actors rated more than 7 in movies less 60 minutes?
+
+SELECT * FROM Hollywood_Movies WHERE 
+ratings > 7 AND  minutes < 45;
+
+Find all movies that have at least two genre types
+logged for that type of movie
+
+SELECT type FROM Hollywood_Movies GROUP BY type HAVING COUNT(*) >= 
+2;
+
+
+using /* CASE */
+
+What ways are there to group the data values that don't exist yet?
+
+SELECT type, rating FROM Hollywood_Movies;
+    CASE
+        WHEN rating > 6 THEN "above average"
+        WHEN rating > 8 THEN "above target"
+        WHEN Rating > 4 THEN "average"
+        
+    ELSE "below average"
+
+How to name this new coloumn?
+
+END as "rating_place"
+FROM Hollywood_Movies
+
